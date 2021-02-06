@@ -7,3 +7,5 @@ disposition table is a record of decisions that judges have made about people af
 The zipped file contains a csv file (use read_csv). 
 
 The .bz2 is a compressed pandas pickle - retains all column dtypes (use read_pickle).
+
+gforms.csv -> a csv file containing google form responses
