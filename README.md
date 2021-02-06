@@ -1,5 +1,19 @@
 # hci_project
 
+## Getting Started
+
+This is a project to manage a flask app and database with mongodb and heroku. 
+
+## Database
+
+Install all requirements. See requirements.txt or ```pip install requirements.txt```
+
+Configure environment. See utils/databaser.py
+
+## Main
+
+A temporary set of starter code. After configuration, run main.py to update the mongodb. 
+
 ## [data](https://github.com/justinhchae/hci_project/tree/main/data)
 
 disposition table is a record of decisions that judges have made about people after they are arrested. 
