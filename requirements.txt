@@ -1,0 +1,13 @@
+pandas
+pymongo
+python-decouple
+gunicorn
+requests
+mongoengine
+dnspython
+python-dotenv
+Flask
+Flask-Cors
+Flask-RESTFul
+flask-mongoengine
+pylint-django

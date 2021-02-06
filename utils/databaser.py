@@ -12,11 +12,15 @@ class MakeMongo():
         """ References
         https://able.bio/rhett/how-to-set-and-get-environment-variables-in-python--274rgt5
         
-        put this in your .env and export them 
+        from terminal -> touch .env -> creates .env file
+        then, edit .env to have the following. 
+        
         PASSWORD=<username>
         DATABASE_NAME=<username>
         USERNAME=<username>
         HOST=<username>
+        
+        export the above to your environment
         """
         pass
 
@@ -31,7 +35,6 @@ class MakeMongo():
             db = client[database]
         else:
             db = client[self.db_name]
-
 
         if df is not None and collection:
             # print(mongo_collection)
