@@ -340,6 +340,8 @@ def make_form_data():
     df = pd.DataFrame.from_dict(c01)
     df.to_csv('data/observation_forms_2.csv', index=False)
 
+    #TODO add fake data for bridgeview and markham courtrooms
+
     bridgeview_start_times = ["9:30"]
     markham_start_times = ["9:30"]
 
