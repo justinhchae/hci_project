@@ -11,3 +11,4 @@ Flask-Cors
 Flask-RESTFul
 flask-mongoengine
 pylint-django
+faker
