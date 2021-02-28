@@ -18,3 +18,8 @@ app = Flask(__name__)
 CORS(app)
 db.init_database_connection(app)
 api = Api(app)
+
+
+@app.route('/')
+def index():
+    return render_template('index.html')
