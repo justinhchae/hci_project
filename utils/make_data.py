@@ -18,7 +18,8 @@ n_observers = 100
 n_attorneys = 302
 n_no_attorneys = int(np.floor(n_attorneys * .3))
 
-def make_random_date(start_times):
+def make_random_date(start_times, court_room):
+
     central = timezone('US/Central')
 
     start_range = datetime.date(2021, 1, 1)
@@ -37,7 +38,12 @@ def make_random_date(start_times):
 
         if random_date.weekday() in weekdays:
             random_date_string = str(random_date)
-            random_time = random.choice(start_times)
+
+            if "Bridgeview" in court_room or "Markham" in court_room:
+                random_time = "9:30:00"
+            else:
+                random_time = random.choice(start_times)
+
             date_string = random_date_string + ' ' + random_time
             date_time_obj = datetime.datetime.strptime(date_string
                                                        , '%Y-%m-%d %H:%M:%S')
@@ -66,11 +72,7 @@ def make_random_date(start_times):
             return date_time_string, random_time, date_string
 
 
-
-
-# Faker.seed(0)
-
-responses = ['Strongly Agree', 'Agree', 'Neutral', 'Disagree', 'Strongly Disagree']
+responses = ['Strongly Agree', 'Strongly Agree', 'Strongly Agree', 'Agree', 'Agree', 'Agree', 'Neutral', 'Neutral', 'Disagree', 'Strongly Disagree']
 
 judge_names = []
 for _ in range(n_judges):
@@ -142,99 +144,113 @@ form_cols = { "Timestamp" : []
              , "Unnamed: 45": []
               }
 
-def make_chicago_observation():
-    chicago_start_times = ["9:00:00", "10:00:00", "10:30:00", "12:00:00", "9:30:00", "9:30:00", "9:30:00", "11:00:00", "12:30:00", "12:30:00", "12:30:00"]
-    chicago_court_rooms = [
-                          "Chicago Courtroom 100"
-                        , "Chicago Courtroom 100"
-                        , "Chicago Courtroom 100"
-                        , "Chicago Courtroom 100"
-                        , "Chicago Courtroom 100"
-                        , "Chicago Courtroom 100"
-                        , "Chicago Courtroom 100"
-                        , "Chicago Courtroom 100"
-                        , "Chicago Courtroom 100"
-                        , "Chicago Courtroom 100"
-                        , "Chicago Courtroom 100"
-                        , "Chicago Courtroom 100"
-                        , "Chicago Courtroom 100"
-                        , "Chicago Courtroom 100"
-                        , "Chicago Courtroom 100"
-                        , "Chicago Courtroom 100"
-                        , "Chicago Courtroom 100"
-                        , "Chicago Courtroom 100"
-                        , "Chicago Courtroom 100"
-                        , "Chicago Courtroom 100"
-                        , "Chicago Courtroom 100"
-                        , "Chicago Courtroom 100"
-                        , "Chicago Courtroom 100"
-                        , "Chicago Courtroom 100"
-                        , "Chicago Courtroom 100"
-                        , "Chicago Courtroom 100"
-                        , "Chicago Courtroom 100"
-                        , "Chicago Courtroom 100"
-                        , "Chicago Courtroom 100"
-                        , "Chicago Courtroom 100"
-                        , "Chicago Courtroom 100"
-                        , "Chicago Courtroom 100"
-                        , "Chicago Courtroom 100"
-                        , "Chicago Courtroom 100"
-                        , "Chicago Courtroom 100"
-                        , "Chicago Courtroom 100"
-                        , "Chicago Courtroom 100"
-                        , "Chicago Courtroom 100"
-                        , "Chicago Courtroom 100"
-                        , "Chicago Courtroom 100"
-                        , "Chicago Courtroom 100"
-                        , "Chicago Courtroom 100"
-                        , "Chicago Courtroom 100"
-                        , "Chicago Courtroom 100"
-                        , "Chicago Courtroom 100"
-                        , "Chicago Courtroom 101"
-                        , "Chicago Courtroom 102"
-                        , "Chicago Courtroom 102"
-                        , "Chicago Courtroom 102"
-                        , "Chicago Courtroom 102"
-                        , "Chicago Courtroom 102"
-                        , "Chicago Courtroom 102"
-                        , "Chicago Courtroom 102"
-                        , "Chicago Courtroom 102"
-                        , "Chicago Courtroom 202"
-                        , "Chicago Courtroom 203"
-                        , "Chicago Courtroom 204"
-                        , "Chicago Courtroom 205"
-                        , "Chicago Courtroom 205"
-                        , "Chicago Courtroom 205"
-                        , "Chicago Courtroom 205"
-                        , "Chicago Courtroom 206"
-                        , "Chicago Courtroom 208"
-                        , "Chicago Courtroom 3A15"
-                        , "Chicago Courtroom 301"
-                        , "Chicago Courtroom 302"
-                        , "Chicago Courtroom 304"
-                        , "Chicago Courtroom 305"
-                        , "Chicago Courtroom 306"
-                        , "Chicago Courtroom 307"
-                        , "Chicago Courtroom 308"
-                        , "Chicago Courtroom 400"
-                        , "Chicago Courtroom 404"
-                        , "Chicago Courtroom 500"
-                        , "Chicago Courtroom 502"
-                        , "Chicago Courtroom 504"
-                        , "Chicago Courtroom 506"
-                        , "Chicago Courtroom 600"
-                        , "Chicago Courtroom 602"
-                        , "Chicago Courtroom 604"
-                        , "Chicago Courtroom 606"
-                        , "Chicago Courtroom 700"
-                        , "Chicago Courtroom 700"
-                        , "Chicago Courtroom 700"
-                        , "Chicago Courtroom 700"
-                        , "Chicago Courtroom 700"
-                        , "Chicago Courtroom 702"
-                        , "Chicago Courtroom 704"
-                        , "Chicago Courtroom 706"
+def make_observations():
+    start_times = ["9:00:00"
+                           , "10:00:00"
+                           , "10:30:00"
+                           , "12:00:00"
+                           , "9:30:00"
+                           , "9:30:00"
+                           , "9:30:00"
+                           , "11:00:00"
+                           , "12:30:00"
+                           , "12:30:00"
+                           , "12:30:00"
                            ]
+    court_rooms = [
+                  "Chicago Courtroom 100"
+                , "Chicago Courtroom 100"
+                , "Chicago Courtroom 100"
+                , "Chicago Courtroom 100"
+                , "Chicago Courtroom 100"
+                , "Chicago Courtroom 100"
+                , "Chicago Courtroom 100"
+                , "Chicago Courtroom 100"
+                , "Chicago Courtroom 100"
+                , "Chicago Courtroom 100"
+                , "Chicago Courtroom 100"
+                , "Chicago Courtroom 100"
+                , "Chicago Courtroom 100"
+                , "Chicago Courtroom 100"
+                , "Chicago Courtroom 100"
+                , "Chicago Courtroom 100"
+                , "Chicago Courtroom 100"
+                , "Chicago Courtroom 100"
+                , "Chicago Courtroom 100"
+                , "Chicago Courtroom 100"
+                , "Chicago Courtroom 100"
+                , "Chicago Courtroom 100"
+                , "Chicago Courtroom 100"
+                , "Chicago Courtroom 100"
+                , "Chicago Courtroom 100"
+                , "Chicago Courtroom 100"
+                , "Chicago Courtroom 100"
+                , "Chicago Courtroom 100"
+                , "Chicago Courtroom 100"
+                , "Chicago Courtroom 100"
+                , "Chicago Courtroom 100"
+                , "Chicago Courtroom 100"
+                , "Chicago Courtroom 100"
+                , "Chicago Courtroom 100"
+                , "Chicago Courtroom 100"
+                , "Chicago Courtroom 100"
+                , "Chicago Courtroom 100"
+                , "Chicago Courtroom 100"
+                , "Chicago Courtroom 100"
+                , "Chicago Courtroom 100"
+                , "Chicago Courtroom 100"
+                , "Chicago Courtroom 100"
+                , "Chicago Courtroom 100"
+                , "Chicago Courtroom 100"
+                , "Chicago Courtroom 100"
+                , "Chicago Courtroom 101"
+                , "Chicago Courtroom 102"
+                , "Chicago Courtroom 102"
+                , "Chicago Courtroom 102"
+                , "Chicago Courtroom 102"
+                , "Chicago Courtroom 102"
+                , "Chicago Courtroom 102"
+                , "Chicago Courtroom 102"
+                , "Chicago Courtroom 102"
+                , "Chicago Courtroom 202"
+                , "Chicago Courtroom 203"
+                , "Chicago Courtroom 204"
+                , "Chicago Courtroom 205"
+                , "Chicago Courtroom 205"
+                , "Chicago Courtroom 205"
+                , "Chicago Courtroom 205"
+                , "Chicago Courtroom 206"
+                , "Chicago Courtroom 208"
+                , "Chicago Courtroom 3A15"
+                , "Chicago Courtroom 301"
+                , "Chicago Courtroom 302"
+                , "Chicago Courtroom 304"
+                , "Chicago Courtroom 305"
+                , "Chicago Courtroom 306"
+                , "Chicago Courtroom 307"
+                , "Chicago Courtroom 308"
+                , "Chicago Courtroom 400"
+                , "Chicago Courtroom 404"
+                , "Chicago Courtroom 500"
+                , "Chicago Courtroom 502"
+                , "Chicago Courtroom 504"
+                , "Chicago Courtroom 506"
+                , "Chicago Courtroom 600"
+                , "Chicago Courtroom 602"
+                , "Chicago Courtroom 604"
+                , "Chicago Courtroom 606"
+                , "Chicago Courtroom 700"
+                , "Chicago Courtroom 700"
+                , "Chicago Courtroom 700"
+                , "Chicago Courtroom 700"
+                , "Chicago Courtroom 700"
+                , "Chicago Courtroom 702"
+                , "Chicago Courtroom 704"
+                , "Chicago Courtroom 706"
+                , "Bridgeview Courtroom 101"
+                , "Bridgeview Courtroom 103"
+                , "Markham Courtroom 101"
+                   ]
 
     data = form_cols.copy()
 
@@ -286,12 +302,11 @@ def make_chicago_observation():
     counter = 0
     for i in range(n_observations):
         counter += 1
-        # print('making observation...', counter)
-        court_room = random.choice(chicago_court_rooms)
+        court_room = random.choice(court_rooms)
         name, email = random.choice(observers)
         judge_name = random.choice(judge_names)
         attorney_name = random.choice(attorney_names)
-        date_timestamp, timestamp, date_string = make_random_date(chicago_start_times)
+        date_timestamp, timestamp, date_string = make_random_date(start_times, court_room)
         random_notes = random.choice(random_text)
 
         for key, value in data.items():
@@ -327,30 +342,18 @@ def make_chicago_observation():
             if not value:
                 value.extend(empty_list)
 
-
     return data
 
 
 def make_form_data():
-    fake_observations = []
 
-    c01 = make_chicago_observation()
-    # c02 = make_chicago_observation()
+    fake_data = make_observations()
 
-    df = pd.DataFrame.from_dict(c01)
+    df = pd.DataFrame.from_dict(fake_data)
+
+    print(df.head())
     df.to_csv('data/observation_forms_2.csv', index=False)
 
-    #TODO add fake data for bridgeview and markham courtrooms
-
-    bridgeview_start_times = ["9:30"]
-    markham_start_times = ["9:30"]
-
-    bridgeview_court_rooms = ["Bridgeview Courtroom 101"
-                            , "Bridgeview Courtroom 103"
-                            , "Markham Courtroom 101"
-                              ]
-
-    markham_court_rooms = ["Markham Courtroom 101"]
     
 
     
