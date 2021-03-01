@@ -56,7 +56,9 @@ def make_random_date(start_times, court_room):
             return date_time_string, random_time, date_string
 
         if counter > 50:
-            add_days = datetime.timedelta(days=2)
+            n_days_to_add = [2,3,4]
+            adder = random.choice(n_days_to_add)
+            add_days = datetime.timedelta(days=adder)
             random_date = random_date + add_days
             random_date_string = str(random_date)
             random_time = random.choice(start_times)
@@ -351,7 +353,6 @@ def make_form_data():
 
     df = pd.DataFrame.from_dict(fake_data)
 
-    print(df.head())
     df.to_csv('data/observation_forms_2.csv', index=False)
 
     
