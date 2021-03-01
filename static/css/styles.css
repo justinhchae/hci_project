@@ -24,7 +24,7 @@ h1 {
 .pad {
     padding: 10px;
 }
-.cards-1, .cards-2 {
+.cards-1, .cards-2 .spreadsheet{
     display: flex;
     flex-wrap: wrap;
     align-items: flex-start;
@@ -47,7 +47,17 @@ h1 {
     margin: 20px 0px 0px 20px;
     border: dotted 1px #CCC;
 }
- 
+
+.spreadsheet section {
+    width: 33.3%;
+}
+
+.spreadsheet section div {
+    margin: 20px 0px 0px 20px;
+    padding: 10px;
+    border: dotted 1px #CCC;
+}
+
 @media only screen and (max-width: 1000px) {
     .cards-1 section, .cards-2 section {
        width: 100%;
