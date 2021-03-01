@@ -24,6 +24,9 @@ api = Api(app)
 def index():
     return render_template('index.html')
 
+@app.route('/temperament/')
+def create_post():
+    return render_template('temperament.html')
 
 if __name__ == "__main__":
     print('running!')
