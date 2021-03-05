@@ -48,6 +48,23 @@ h1 {
     border: dotted 1px #CCC;
 }
 
+.charts section {
+    width: 50%;
+}
+
+.charts section > div {
+    margin: 20px 0px 0px 20px;
+    border: dotted 1px #CCC;
+}
+
+.charts {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-start;
+    justify-content: flex-start;
+    padding-right: 20px;
+}
+
 .spreadsheet {
     width: 100%;
 }
@@ -58,7 +75,12 @@ h1 {
     border-radius: 2px;
     box-shadow: 0 2px 10px 0 rgba(70, 76, 79, .2);
     display: block;
-    margin: 10 auto;
+    margin: auto;
+}
+
+.iframe {
+    display: block;
+    border-style:none;
 }
 
 @media only screen and (max-width: 1000px) {
