@@ -297,9 +297,40 @@ def make_observations():
     empty_list = list(itertools.repeat(None, n_observations))
 
     def make_fake_text():
-        return fake.paragraph(nb_sentences=1)
+        
+        fake_responses = [
+              None
+            , 'The Judge was...'
+            , 'The Court was...'
+            , 'The attorney was...'
+            , 'The police officer was...'
+            , 'I could not...'
+            , 'Everything seemed'
+            , 'The hearing went quickly'
+            , 'The defendant...'
+            , 'Pobation office was OK with the outcome...'
+            , 'The man said...'
+            , 'I think the judge was transparent...'
+            , 'Offered a continuance due to private...'
+            , 'patient'
+            , 'proper steps so far it appears'
+            , 'was very understanding of folks'
+            , 'and the judge explained to defendant'
+            , 'already served part of a long term and his attorney'
+            , 'charge was violation of bail bond'
+            , 'judge apologized for using male pronouns '
+            , 'PD asked for community service'
+            , 'Defendant did not have an attorney'
+            , None
+            , None
+            , None
+            , None
+            ]
+        
+        a_choice = random.choice(range(len(fake_responses)))
 
-    random_text = [None, make_fake_text, None, None]
+        return fake_responses[a_choice]
+    
 
     counter = 0
     for i in range(n_observations):
@@ -309,7 +340,7 @@ def make_observations():
         judge_name = random.choice(judge_names)
         attorney_name = random.choice(attorney_names)
         date_timestamp, timestamp, date_string = make_random_date(start_times, court_room)
-        random_notes = random.choice(random_text)
+        random_notes = make_fake_text()
 
         for key, value in data.items():
 
@@ -333,7 +364,7 @@ def make_observations():
                 value.append(judge_name)
             if key == 'Is there anything else you wish to address?':
                 if random_notes is not None:
-                    text = random_notes()
+                    text = make_fake_text()
                     value.append(text)
                 else:
                     value.append(random_notes)

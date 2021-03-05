@@ -24,9 +24,17 @@ api = Api(app)
 def index():
     return render_template('index.html')
 
+@app.route('/overview/')
+def make_page0():
+    return render_template('overview.html')
+
 @app.route('/temperament/')
-def create_post():
+def make_page1():
     return render_template('temperament.html')
+
+@app.route('/thresholds/')
+def make_page2():
+    return render_template('thresholds.html')
 
 if __name__ == "__main__":
     print('running!')
