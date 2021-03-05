@@ -36,6 +36,9 @@ class MakeMongo():
         else:
             db = client[self.db_name]
 
+        df['Judge Name 1'] = df['Judge Name 1'].fillna('None')
+        df['Judge Name 1'] = df['Judge Name 1'].replace({'None':None})
+
         if df is not None and collection:
             # print(mongo_collection)
             # print(df.head())
