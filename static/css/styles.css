@@ -48,6 +48,14 @@ h1 {
     border: dotted 1px #CCC;
 }
 
+.charts {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-start;
+    justify-content: flex-start;
+    padding-right: 20px;
+}
+
 .charts section {
     width: 50%;
 }
@@ -84,10 +92,10 @@ h1 {
 }
 
 @media only screen and (max-width: 1000px) {
-    .cards-1 section, .cards-2 section {
+    .cards-1 section, .cards-2 section, .charts section{
        width: 100%;
     }
-    .cards-1 section > div, .cards-2 section > div {
+    .cards-1 section > div, .cards-2 section > div , .charts section > div {
        margin: 20px 0px 0px 20px;
     }
 }
