@@ -27,20 +27,14 @@ monger = MakeMongo()
 # before running next, configure env variables for database access
 monger.insert_df(collection='hci', df=df)
 
-# df = pd.DataFrame()
-# df = df.rename(columns={'Judge Name 1':'Judge Name'})
-# df = df.dropna(subset=['Judge Name'])
+agg_temperament_scores = df.groupby('Judge Name 1')[temperament].agg('mean')
 
-df = df.groupby('Judge Name 1')[temperament].agg('mean')
-
-df = df.agg(['mean', 'std', 'min', 'max', 'count'], axis='columns').reset_index()
-df = df.round(2)
-df = df.rename(columns={'index':'Judge Name 1'
+agg_temperament_scores = agg_temperament_scores.agg(['mean', 'std', 'min', 'max', 'count'], axis='columns').reset_index()
+agg_temperament_scores = agg_temperament_scores.round(2)
+agg_temperament_scores = agg_temperament_scores.rename(columns={'index':'Judge Name 1'
                        , 'mean': 'Temperament Score'})
-
-
-print(df)
+print(agg_temperament_scores)
 
 # create a databaser object for mongoDB
 monger = MakeMongo()
-monger.insert_df(collection='agg_temperament_scores', df=df)
+monger.insert_df(collection='agg_temperament_scores', df=agg_temperament_scores)
