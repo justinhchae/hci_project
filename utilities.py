@@ -15,11 +15,11 @@ temperament = ["The judge was professional"
               , "The judge was respectful"
               , "The judge was patient"]
 
-df[temperament] = df[temperament].replace({'Strongly Agree':5
-                                           ,'Agree':4
-                                           ,'Neutral':3
-                                           ,'Disagree':2
-                                           ,'Strongly Disagree':1})
+df[temperament] = df[temperament].replace({'Strongly Agree':4
+                                           ,'Agree':3
+                                           ,'Neutral':2
+                                           ,'Disagree':1
+                                           ,'Strongly Disagree':0})
 
 # create a databaser object for mongoDB
 monger = MakeMongo()
@@ -33,13 +33,13 @@ monger.insert_df(collection='hci', df=df)
 
 df = df.groupby('Judge Name 1')[temperament].agg('mean')
 
-df = df.agg(['mean', 'std', 'min', 'max'], axis='columns').reset_index()
+df = df.agg(['mean', 'std', 'min', 'max', 'count'], axis='columns').reset_index()
 df = df.round(2)
 df = df.rename(columns={'index':'Judge Name 1'
                        , 'mean': 'Temperament Score'})
 
 
-print(df['Temperament Score'])
+print(df)
 
 # create a databaser object for mongoDB
 monger = MakeMongo()
