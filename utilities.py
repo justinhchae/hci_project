@@ -34,6 +34,7 @@ monger.insert_df(collection='hci', df=df)
 df = df.groupby('Judge Name 1')[temperament].agg('mean')
 
 df = df.agg(['mean', 'std', 'min', 'max'], axis='columns').reset_index()
+df = df.round(2)
 df = df.rename(columns={'index':'Judge Name 1'
                        , 'mean': 'Temperament Score'})
 
